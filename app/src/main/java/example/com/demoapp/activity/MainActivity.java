@@ -114,6 +114,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 Intent intent4 = new Intent(MainActivity.this, InterpreterActivity.class);
                 startActivity(intent4);
                 break;
+            case 5:
+                Intent intent5 = new Intent(MainActivity.this, MysentencesActivity.class);
+                startActivity(intent5);
+                break;
         }
 
 //        mLvDrawerMenu.setItemChecked(position, true);
