@@ -22,7 +22,7 @@
 
     <!-- Sliding Menu item icons -->
     <array name="nav_drawer_icons">
-        <item>@mipmap/ic_action_conversation</item>
+        <item>@mipmap/ic_action_home</item>
         <item>@mipmap/ic_action_tag</item>
         <item>@mipmap/ic_action_favorite</item>
         <item>@mipmap/ic_action_history</item>
