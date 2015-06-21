@@ -6,4 +6,5 @@
     <color name="windowBackground">#FFFFFF</color>
     <color name="colorAccent">#8BC34A</color>
     <color name="tabsScrollColor">#FFFFFF</color>
+    <color name="colorSecond">#000000</color>
 </resources>

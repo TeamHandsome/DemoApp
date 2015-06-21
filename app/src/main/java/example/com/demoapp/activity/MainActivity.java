@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
         // // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
         adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
 
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
+        pager.setCurrentItem(1); // set focus on Category tab when open app
     }
 
     @Override
@@ -178,23 +180,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
         mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    public void setFragment(int position, Class<? extends Fragment> fragmentClass) {
-        try {
-            Fragment fragment = fragmentClass.newInstance();
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frame_container, fragment, fragmentClass.getSimpleName());
-            fragmentTransaction.commit();
-
-            mLvDrawerMenu.setItemChecked(position, true);
-            mDrawerLayout.closeDrawer(mLvDrawerMenu);
-            mLvDrawerMenu.invalidateViews();
-        }
-        catch (Exception ex){
-            Log.e("setFragment", ex.getMessage());
-        }
     }
 
     private List<DrawerMenuItem> generateDrawerMenuItems() {
