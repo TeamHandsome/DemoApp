@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -27,6 +28,8 @@ public class DisplayShoppingSentencesActivity extends ActionBarActivity {
     private SlidingTabLayout tabs;
     CharSequence Titles[]={"文章","画像"};
     int Numboftabs =2;
+
+    public static int pos = 0;
 
     private DbHelper mDbHelper;
     private SQLiteDatabase dataBase;
@@ -51,11 +54,9 @@ public class DisplayShoppingSentencesActivity extends ActionBarActivity {
        // Lấy bundle đc gửi từ ShoppingSubActivity
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            Bundle bundle = new Bundle();
-            int value = extras.getInt("position");
-            bundle.putInt("position",value);
-            ListSentencesFragment objfrag = new ListSentencesFragment();
-            objfrag.setArguments(bundle);
+            //khong truyen du lieu qua bundle nua,truyen vao var pos static o tren,class ben kia goi qua static do
+            pos = extras.getInt("position");
+            ListSentencesFragment objfrag = ListSentencesFragment.newInstance();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.pager, objfrag);
             transaction.commit();
