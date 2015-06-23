@@ -49,7 +49,7 @@ public class ShoppingSubActivity extends ActionBarActivity {
         }
 
         try {
-            db.copydatabase();
+            db.createdatabase();
         } catch (IOException e) {
             e.printStackTrace();
         }

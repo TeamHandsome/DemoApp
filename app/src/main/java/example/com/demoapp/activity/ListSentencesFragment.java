@@ -52,7 +52,11 @@ public class ListSentencesFragment extends Fragment {
                         e.printStackTrace();
                     }
 
-                    db.opendatabase();
+                    try {
+                        db.createdatabase();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                     listSubcategories = DbHelper.DisplayShoppingSentences1();
                     mSentencesAdapter = new SentencesAdapter(getActivity(), R.layout.activity_display_item, listSubcategories);
