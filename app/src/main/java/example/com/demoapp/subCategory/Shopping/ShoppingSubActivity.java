@@ -1,7 +1,8 @@
-package example.com.demoapp.subCategory;
+package example.com.demoapp.subCategory.Shopping;
 
 import android.content.Context;
-import android.database.Cursor;
+import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBarActivity;
@@ -9,14 +10,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import example.com.demoapp.R;
-import example.com.demoapp.activity.MainActivity;
-import example.com.demoapp.adapter.CategoriesAdapter;
 import example.com.demoapp.adapter.SubCategoriesAdapter;
 import example.com.demoapp.database.DbHelper;
 import example.com.demoapp.model.SubCategoriesItem;
@@ -35,16 +36,39 @@ public class ShoppingSubActivity extends ActionBarActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //hien thi icon back
 
         listView = (ListView) findViewById(R.id.lvSubCategories);
+        ////
+        DbHelper db = null;
         try {
-            showList();
+            db = new DbHelper(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try {
+            db.copydatabase();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        listSubcategories = DbHelper.DisplayShoppingSub();
+        mSubCategoriesAdapter = new SubCategoriesAdapter(this, R.layout.activity_shopping_sub_item, listSubcategories);
+        listView.setAdapter(mSubCategoriesAdapter);
+        mSubCategoriesAdapter.notifyDataSetChanged();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int itemPosition = position;    //item index
+                Intent intent = new Intent(getBaseContext(), DisplayShoppingSentencesActivity.class);
+                intent.putExtra("position", itemPosition+1);  //gui position le DisplayShopping
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+            }
+        });
     }
 
     @Override
@@ -73,16 +97,6 @@ public class ShoppingSubActivity extends ActionBarActivity {
     }
 
     public void showList() throws IOException {
-        DbHelper db = new DbHelper(this);
 
-        try {
-            db.createdatabase();
-        } catch (IOException ioe) {
-            throw new Error("Unable to create database");
-        }
-
-        listSubcategories = DbHelper.getAllToListShopping();
-        mSubCategoriesAdapter = new SubCategoriesAdapter(this, R.layout.activity_shopping_sub_item, listSubcategories);
-        listView.setAdapter(mSubCategoriesAdapter);
     }
 }

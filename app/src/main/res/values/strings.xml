@@ -40,5 +40,6 @@
 
     <string name="title_activity_conversation_sub">会話</string>
     <string name="title_activity_shopping">ショッピング</string>
+    <string name="title_activity_display">リスト</string>
 
 </resources>

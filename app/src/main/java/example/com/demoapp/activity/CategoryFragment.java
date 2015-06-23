@@ -12,7 +12,7 @@ import android.widget.GridView;
 import example.com.demoapp.R;
 import example.com.demoapp.adapter.CategoriesAdapter;
 import example.com.demoapp.subCategory.ConversationSubActivity;
-import example.com.demoapp.subCategory.ShoppingSubActivity;
+import example.com.demoapp.subCategory.Shopping.ShoppingSubActivity;
 
 public class CategoryFragment extends Fragment {
 

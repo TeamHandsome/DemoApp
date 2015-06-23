@@ -16,6 +16,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import example.com.demoapp.model.DisplaySentencesItem;
 import example.com.demoapp.model.SubCategoriesItem;
 
 /**
@@ -23,12 +24,12 @@ import example.com.demoapp.model.SubCategoriesItem;
  */
 public class DbHelper extends SQLiteOpenHelper{
 
-    public static String DB_PATH = "data/data/example.com.demoapp/databases/";
-    public static String DB_NAME = "db.db";
+    public static String DB_PATH = "/data/data/example.com.demoapp/databases/";
+    public static String DB_NAME = "dbtts.sqlite";
     public static String DB_SUBCATEGORIES_ID = "_id";
-    public static String DB_SUBCATEGORIES_CATEGORIES_ID="categories_id";
     public static String DB_SUBCATEGORIES_NAME = "name";
-    public static String TABLE_SUBCATEGORIES = "subcategories";
+    public static String DB_SENTENCES_ID = "_id";
+    public static String DB_SENTENCES_JP = "jp";
 
     private Context context;
     private SQLiteDatabase myDataBase;
@@ -36,18 +37,10 @@ public class DbHelper extends SQLiteOpenHelper{
     public DbHelper(Context context) throws IOException{
         super( context , DB_NAME , null , 1);
         this.context = context;
-        boolean dbexist = checkdatabase();
-        if(dbexist)
-        {
-            //System.out.println("Database exists");
-            opendatabase();
-        }
-        else
-        {
-            System.out.println("Database doesn't exist");
-            createdatabase();
-        }
     }
+
+
+
     // Creates a empty database on the system and rewrites it with your own database.
     public void createdatabase() throws IOException {
 
@@ -84,7 +77,7 @@ public class DbHelper extends SQLiteOpenHelper{
         return checkdb;
     }
     // copy your assets db to the new system DB
-    private void copydatabase() throws IOException{
+    public void copydatabase() throws IOException{
         //Open your local db as the input stream
         InputStream myinput = context.getAssets().open(DB_NAME);
 
@@ -92,7 +85,7 @@ public class DbHelper extends SQLiteOpenHelper{
         String outfilename = DB_PATH + DB_NAME;
 
         //Open the empty db as the output stream
-        OutputStream myoutput = new FileOutputStream("/data/data/example.com.demoapp/databases/db.db");
+        OutputStream myoutput = new FileOutputStream("/data/data/example.com.demoapp/databases/dbtts.sqlite");
 
         // transfer byte to inputfile to outputfile
         byte[] buffer = new byte[1024];
@@ -130,10 +123,10 @@ public class DbHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    //
+    /*
     //Shopping Subcategory
-    //
-    public static ArrayList<SubCategoriesItem> getAllToListShopping()
+    */
+    public static ArrayList<SubCategoriesItem> DisplayShoppingSub()
     {
         ArrayList<SubCategoriesItem> arrayList = null;
 
@@ -157,4 +150,28 @@ public class DbHelper extends SQLiteOpenHelper{
         database.close();
         return arrayList;
     }
+    public static ArrayList<DisplaySentencesItem> DisplayShoppingSentences1(){
+        ArrayList<DisplaySentencesItem> arrayList = null;
+
+        SQLiteDatabase database = SQLiteDatabase.openDatabase(DB_PATH + DB_NAME, null, SQLiteDatabase.OPEN_READONLY);
+        Cursor cursor = database.rawQuery("SELECT * FROM sentences INNER JOIN subcategories" +
+                                    " ON sentences.subcategories_id = subcategories._id" +
+                                    " WHERE sentences.subcategories_id='1'", null);
+        if(cursor.moveToFirst())
+        {
+            arrayList = new ArrayList<DisplaySentencesItem>();
+            do
+            {
+                DisplaySentencesItem item = new DisplaySentencesItem();
+                item.setId(cursor.getInt((cursor.getColumnIndex(DB_SENTENCES_ID))));
+                item.setName(cursor.getString(cursor.getColumnIndex(DB_SENTENCES_JP)));
+
+                arrayList.add(item);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return arrayList;
+    }
+
 }

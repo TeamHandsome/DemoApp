@@ -3,15 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="example.com.demoapp.subCategory.ShoppingSubActivity">
+    tools:context="example.com.demoapp.subCategory.Shopping.ShoppingSubActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="300px"
-        android:background="@drawable/header_sub_shopping"/>
+        android:background="@drawable/header_sub_shopping" />
+
     <ListView
         android:id="@+id/lvSubCategories"
         android:layout_width="match_parent"
