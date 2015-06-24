@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,17 +43,48 @@ public class SentencesAdapter extends BaseAdapter {
             convertView = inflater.inflate(idLayoutResource,parent,false);
             holder.tvDisplayID = (TextView) convertView.findViewById(R.id.tvDisplayId);
             holder.tvDisplayName = (TextView) convertView.findViewById(R.id.tvDisplayName);
+            holder.button1=(Button)convertView.findViewById(R.id.swipe_button1);
+            holder.button2=(Button)convertView.findViewById(R.id.swipe_button2);
+            holder.button3=(Button)convertView.findViewById(R.id.swipe_button3);
             convertView.setTag(holder);
         }else
             holder = (ViewHolder) convertView.getTag();
         holder.tvDisplayID.setText(""+listSentences.get(position).getId());
         holder.tvDisplayName.setText(listSentences.get(position).getName());
 
+        holder.button1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Toast.makeText(context, "Button 1 Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.button2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Toast.makeText(context, "Button 2 Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.button3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Toast.makeText(context, "Button 3 Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return convertView;
     }
 
     private static class ViewHolder{
         TextView tvDisplayID, tvDisplayName;
+        Button button1,button2,button3;
     }
 
     @Override

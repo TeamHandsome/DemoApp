@@ -73,7 +73,7 @@
                 android:value=".activity.MainActivity" />
         </activity>
         <activity
-            android:name=".subCategory.Shopping.ShoppingSubActivity"
+            android:name=".subCategory.Shopping.DisplayShoppingSubActivity"
             android:label="@string/title_activity_shopping" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

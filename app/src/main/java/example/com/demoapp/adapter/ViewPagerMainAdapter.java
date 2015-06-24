@@ -10,14 +10,14 @@ import example.com.demoapp.activity.SuggestFragment;
 /**
  * Created by Long on 6/14/2015.
  */
-public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+public class ViewPagerMainAdapter extends FragmentStatePagerAdapter {
 
-    CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter is created
-    int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created
+    CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerMainAdapter is created
+    int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerMainAdapter is created
 
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
-    public ViewPagerAdapter(FragmentManager fm, CharSequence[] mTitles, int mNumbOfTabsumb) {
+    public ViewPagerMainAdapter(FragmentManager fm, CharSequence[] mTitles, int mNumbOfTabsumb) {
         super(fm);
 
         this.Titles = mTitles;

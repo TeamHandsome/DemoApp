@@ -1,19 +1,14 @@
 package example.com.demoapp.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +20,7 @@ import java.util.List;
 
 import example.com.demoapp.R;
 import example.com.demoapp.adapter.DrawerMenuItemAdapter;
-import example.com.demoapp.adapter.ViewPagerAdapter;
+import example.com.demoapp.adapter.ViewPagerMainAdapter;
 import example.com.demoapp.model.DrawerMenuItem;
 import example.com.demoapp.tabs.SlidingTabLayout;
 
@@ -39,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private DrawerMenuItemAdapter mDrawerMenuAdapter;
     //Declare Tabs
     private ViewPager pager;
-    private ViewPagerAdapter adapter;
+    private ViewPagerMainAdapter adapter;
     private SlidingTabLayout tabs;
     CharSequence Titles[]={"おすすめ","会話集"};
     int Numboftabs =2;
@@ -176,8 +171,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void SlidingTab(){
-        // // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+        // // Creating The ViewPagerMainAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
+        adapter =  new ViewPagerMainAdapter(getSupportFragmentManager(),Titles,Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);

@@ -4,22 +4,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import example.com.demoapp.activity.CategoryFragment;
-import example.com.demoapp.activity.ListImagesFragment;
-import example.com.demoapp.activity.ListSentencesFragment;
-import example.com.demoapp.activity.SuggestFragment;
+import example.com.demoapp.subCategory.Shopping.ListImagesShoppingFragment;
+import example.com.demoapp.subCategory.Shopping.ListSentencesShoppingFragment;
 
 /**
  * Created by Long on 6/14/2015.
  */
-public class ViewPagerShopping extends FragmentStatePagerAdapter {
+public class ViewPagerShoppingAdapter extends FragmentStatePagerAdapter {
 
-    CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter is created
-    int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerAdapter is created
+    CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerShoppingAdapter is created
+    int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerShoppingAdapter is created
 
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
-    public ViewPagerShopping(FragmentManager fm, CharSequence[] mTitles, int mNumbOfTabsumb) {
+    public ViewPagerShoppingAdapter(FragmentManager fm, CharSequence[] mTitles, int mNumbOfTabsumb) {
         super(fm);
 
         this.Titles = mTitles;
@@ -33,12 +31,12 @@ public class ViewPagerShopping extends FragmentStatePagerAdapter {
 
         if(position == 0) // if the position is 0 we are returning the First tab
         {
-            ListSentencesFragment tab1 = new ListSentencesFragment();
+            ListSentencesShoppingFragment tab1 = new ListSentencesShoppingFragment();
             return tab1;
         }
         else             // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
-            ListImagesFragment tab2 = new ListImagesFragment();
+            ListImagesShoppingFragment tab2 = new ListImagesShoppingFragment();
             return tab2;
         }
 
