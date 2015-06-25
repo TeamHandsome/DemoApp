@@ -11,24 +11,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200px"
-            android:background="@drawable/header_sub_shopping" />
-
-        <com.fortysevendeg.swipelistview.SwipeListView
+        <ListView
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/lvSentences"
-            android:listSelector="#00000000"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            swipe:swipeFrontView="@+id/swipelist_frontview"
-            swipe:swipeBackView="@+id/swipelist_backview"
-            swipe:swipeDrawableChecked="@drawable/choice_selected"
-            swipe:swipeDrawableUnchecked="@drawable/choice_unselected"
-            swipe:swipeCloseAllItemsWhenMoveList="true"
-            swipe:swipeMode="both">
-
-        </com.fortysevendeg.swipelistview.SwipeListView>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 
